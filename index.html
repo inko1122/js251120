@@ -3,40 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>간단한 웹페이지</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            color: #333;
-            text-align: center;
-            flex-direction: column;
-        }
-        h1 {
-            color: #007bff;
-        }
-    </style>
+    <title>블록 클릭 게임</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>안녕하세요!</h1>
-    <p>Gemini가 생성한 간단한 웹페이지입니다.</p>
-    <p id="time"></p>
+    <div class="container">
+        <!-- 시작 화면 -->
+        <div id="start-screen" class="screen active">
+            <h1>블록 클릭 게임</h1>
+            <p>이름을 입력하고 시작하세요!</p>
+            <input type="text" id="player-name-input" placeholder="이름을 입력하세요">
+            <button id="start-button">게임 시작</button>
+        </div>
 
-    <script>
-        function updateTime() {
-            const timeElement = document.getElementById('time');
-            const now = new Date();
-            timeElement.textContent = "현재 시간: " + now.toLocaleTimeString('ko-KR');
-        }
+        <!-- 게임 화면 -->
+        <div id="game-screen" class="screen">
+            <div id="game-info">
+                <span id="score-display">점수: 0</span>
+                <span id="player-name-display"></span>
+            </div>
+            <canvas id="game-canvas" width="400" height="600"></canvas>
+        </div>
 
-        // 페이지 로드 시 즉시 시간을 업데이트하고, 1초마다 반복합니다.
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
+        <!-- 게임 오버 화면 -->
+        <div id="game-over-screen" class="screen">
+            <h1>게임 오버!</h1>
+            <p><span id="final-player-name"></span>님의 최종 점수:</p>
+            <p id="final-score">0</p>
+            <button id="restart-button">다시 시작</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
 </body>
 </html>
